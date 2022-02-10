@@ -2,10 +2,84 @@
 //
 
 #include <iostream>
+#include <fstream>
+
+#include <cstdio>
+#include <string>
+
+bool stdioFileWriteRead()
+{
+	FILE *file;
+	fopen_s(&file, "test.txt", "w");
+
+	if (file == nullptr) {
+		std::cout << "Can't create 'test.txt'!" << std::endl;
+		return false;
+	}
+
+	fprintf_s(file, "%s", "test");
+	fclose(file);
+
+	fopen_s(&file, "test2.txt", "r");
+
+	if (file == nullptr) {
+		std::cout << "Can't open 'test2.txt'!" << std::endl;
+		fopen_s(&file, "test.txt", "r");
+
+		if (file == nullptr) {
+			std::cout << "Can't open 'test.txt'!" << std::endl;
+			return false;
+		}
+	}
+
+	std::cout << "file.txt content:" << std::endl;
+	int fileContentLength = 5;
+	char *fileContent = new char[fileContentLength];
+	fscanf_s(file, "%s", fileContent, fileContentLength);
+	std::cout << fileContent << std::endl;
+	fclose(file);
+
+	return true;
+}
+
+bool fstreamFileWriteRead()
+{
+	std::ofstream writer("test.txt");
+	std::ifstream reader;
+	
+	if (!writer.is_open()) {
+		std::cout << "Can't create 'test.txt'!" << std::endl;
+		return false;
+	}
+
+	writer << "test";
+	writer.close();
+
+	reader.open("test2.txt");
+
+	if (!reader.is_open()) {
+		std::cout << "Can't open 'test2.txt'!" << std::endl;
+		reader.open("test.txt");
+
+		if (!reader.is_open()) {
+			std::cout << "Can't open 'test.txt'!" << std::endl;
+			return false;
+		}
+	}
+
+	std::string fileContent;
+	reader >> fileContent;
+	std::cout << "file.txt content:" << std::endl;
+	std::cout << fileContent << std::endl;
+	reader.close();
+
+	return true;
+}
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	fstreamFileWriteRead();
+	return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
