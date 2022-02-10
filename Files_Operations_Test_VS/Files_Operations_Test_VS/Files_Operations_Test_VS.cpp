@@ -76,6 +76,18 @@ bool fstreamFileWriteRead()
 	return true;
 }
 
+//TODO: реализовать функции ниже
+
+//Создаёт файл со случайным массивом размера numbersCount и диапазоном значений [0, maxNumberValue].
+//Возвращает true, если файл был успешно создан.
+//Функция должна быть способна сгенерировать файл размера больше, чем доступная оперативная память.
+bool createFileWithRandomNumbers(const std::string &fileName, const int numbersCount, const int maxNumberValue);
+
+//Проверяет массив в файле на упорядоченность.
+//Возвращает true, если массив в файле упорядочен.
+//Функция должна быть способна проверить файл размера больше, чем доступная оперативная память.
+bool isFileContainsSortedArray(const std::string &fileName);
+
 int main()
 {
 	fstreamFileWriteRead();
