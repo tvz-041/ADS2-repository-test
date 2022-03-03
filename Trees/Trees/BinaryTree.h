@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+
 struct Node
 {
 	Node(const int key = 13, Node *leftChild = nullptr, Node *rightChild = nullptr) :
@@ -27,7 +29,14 @@ public:
 	void printLevel(const int level);
 	void printLevel(Node *subTreeRoot, const int level, const int currentLevel = 0);
 
-private:
+
+	Node *node(const int nodeIndex);
+	Node *node(Node *subTreeRoot, int nodeIndex);
+
+	Node *nodeRecursive(const int nodeIndex);
+	Node *nodeRecursive(Node *subTreeRoot, const int nodeIndex);
+	Node *nodeRecursive(const int nodeIndex, const std::vector<Node *> &currentLevelNodes);
+
 	Node *m_root = nullptr;
 };
 
