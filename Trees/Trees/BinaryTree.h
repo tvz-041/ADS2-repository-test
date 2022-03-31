@@ -20,6 +20,7 @@ public:
 
 	Node *getRoot();
 	Node *addNode(Node *subTreeRoot, const int key);
+	bool findAndEraseNode(Node *subTreeRoot, const int key);
 
 	void printHorizontal();
 	void printHorizontal(Node *subTreeRoot, const int level = 0);

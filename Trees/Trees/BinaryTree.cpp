@@ -34,6 +34,12 @@ Node *BinaryTree::addNode(Node *subTreeRoot, const int key)
 	}
 }
 
+bool BinaryTree::findAndEraseNode(Node * subTreeRoot, const int key)
+{
+	//TODO: реализовать
+	return false;
+}
+
 void BinaryTree::printHorizontal()
 {
 	printHorizontal(m_root);
